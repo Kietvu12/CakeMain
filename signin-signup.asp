@@ -1,30 +1,52 @@
+
 <!--#include file="connection.asp"-->
 <%
-phone = Requeset.form("phone")
-If(Request.ServerVariables("REQUEST_METHOD"="POST"))THEN
-password = Requeset.form("password")
-If (NOT isnull(phone) AND NOT isnull(password) AND  TRIM (phone)<>""AND TRIM(password)<>"") Then
- Set cmdPrep = Server.CreateObject("ADODB.Command")
- cmdPrep.ActiveConnection = connDB
- cmdPrep.CommandType = 1
- cmdPrep.Prepared = True
- cmdPrep.CommandText = "SELECT * FROM Customer WHERE phone=? AND password=?"
- cmdPrep.parameters.Append cmdPrep.createParameter("phone",129,1,255,phone)
- cmdPrep.parameters.Append cmdPrep.createParameter("password"202,1,255,password)
- 
- Set Result = cmdPrep.excute
- If not Result.EOF THEN
- phone=Result("phone")
- Session("phone")=phone
- Session("Success")="Login succesfully"
- Response.redirect("index.asp")
- Else
- Session("Error")= "Wrong phone or password"
+Dim phone, password
+phone = Request.Form("phone")
+password = Request.Form("password")
+If (NOT isnull(phone) AND NOT isnull(password) AND TRIM(phone)<>"" AND TRIM(password)<>"" ) Then
+    ' true
+    Dim sql
+    sql = "select * from Customer where phone= ? and password= ?"
+    Dim cmdPrep
+    set cmdPrep = Server.CreateObject("ADODB.Command")
+    connDB.Open()
+    cmdPrep.ActiveConnection = connDB
+    cmdPrep.CommandType=1
+    cmdPrep.Prepared=true
+    cmdPrep.CommandText = sql
+    cmdPrep.Parameters(0)=phone
+    cmdPrep.Parameters(1)=password
+    Dim result
+    set result = cmdPrep.execute()
+    'kiem tra ket qua result o day
+    If not result.EOF Then
+        ' dang nhap thanh cong
+        Session("phone")=result("phone")
+        Session("Success")="Login Successfully"
+        Response.redirect("index.asp")
+    Else
+        ' dang nhap ko thanh cong
+        Session("Error") = "Wrong phone or password"
+    End if
+    result.Close()
+    connDB.Close()
+Else
+    ' false
+    Session("Error")="Please input phone and password."
+End if
 
- End If
- End If
- End If
- %>
+'Lay ve thong tin dang nhap gom phone va password
+
+'Validate thong tin dang nhap
+
+'Kiem tra thong tin xem co ton tai trong bang taikhoan hay khong
+
+'Neu ton tai thi dang nhap thanh cong, tao Session, redirect toi trang quan tri
+
+'Neu dang nhap ko thanh cong, thi thong bao loi.
+%>
+ 
 
 <!DOCTYPE html>
 <html>
