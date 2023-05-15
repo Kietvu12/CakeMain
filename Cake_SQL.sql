@@ -4,6 +4,7 @@ create table Customer(
 tenKH nvarchar(100) not null,
 soDT char(10) primary key,
 diemKH int,
+password char(100) not null,
 );
 go
 create table LoaiHH(
@@ -42,4 +43,5 @@ donGia int not null,
 thanhTien int not null,
 ); 
 go
+
 
