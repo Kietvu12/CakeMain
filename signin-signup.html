@@ -1,3 +1,30 @@
+<!--#include file="connection.asp"-->
+<%
+phone = Requeset.form("phone")
+If(Request.ServerVariables("REQUEST_METHOD"="POST"))THEN
+password = Requeset.form("password")
+If (NOT isnull(phone) AND NOT isnull(password) AND  TRIM (phone)<>""AND TRIM(password)<>"") Then
+ Set cmdPrep = Server.CreateObject("ADODB.Command")
+ cmdPrep.ActiveConnection = connDB
+ cmdPrep.CommandType = 1
+ cmdPrep.Prepared = True
+ cmdPrep.CommandText = "SELECT * FROM Customer WHERE phone=? AND password=?"
+ cmdPrep.parameters.Append cmdPrep.createParameter("phone",129,1,255,phone)
+ cmdPrep.parameters.Append cmdPrep.createParameter("password"202,1,255,password)
+ 
+ Set Result = cmdPrep.excute
+ If not Result.EOF THEN
+ phone=Result("phone")
+ Session("phone")=phone
+ Session("Success")="Login succesfully"
+ Response.redirect("index.asp")
+ Else
+ Session("Error")= "Wrong phone or password"
+
+ End If
+ End If
+ End If
+ %>
 
 <!DOCTYPE html>
 <html>
