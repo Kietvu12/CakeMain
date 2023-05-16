@@ -11,6 +11,7 @@ create table LoaiHH(
 MaLoai int primary key identity(1,1),
 TenLoai nvarchar(205) not null,
 SoLuong int not null,
+img varchar(205) not null,
 );
 go
 create table Hh(
