@@ -247,7 +247,7 @@ connDB.Open()
 
 ' Tạo câu truy vấn
 Dim query
-query = "SELECT TenLoai, SoLuong, img FROM LoaiHH"
+query = "SELECT MaLoai, TenLoai, SoLuong, img FROM LoaiHH"
 
 ' Thực thi câu truy vấn
 Dim rs
