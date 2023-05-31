@@ -14,6 +14,13 @@ SoLuong int not null,
 img varchar(205) not null,
 );
 go
+insert into LoaiHH( TenLoai, SoLuong,img) values 
+( Cupcake, 1, img/product-1.jpg),
+( Cupcake2, 1, img/product-2.jpg),
+( Cupcake3, 1, img/product-3.jpg),
+( Cupcake4, 1, img/product-4.jpg),
+( Cupcake5, 1, img/product-5.jpg);
+Cupcake4
 create table Hh(
 MaHH int primary key identity(1,1),
 MaLoai int not null,
