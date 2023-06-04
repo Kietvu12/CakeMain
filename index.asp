@@ -26,9 +26,8 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
-</head>
 
-<body>
+<body  onload="getslsp()">
 
     <!-- Page Preloder -->
    
@@ -47,7 +46,7 @@
             </div>
         </div>
         <div class="offcanvas__logo">
-            <a href="./index.html"><img src="img/logo.png" alt=""></a>
+            <a href="./index.asp"><img src="img/logo.png" alt=""></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__option">
@@ -65,8 +64,8 @@
                         <div class="header__top__inner">
                             <div class="header__top__left">
                                 <div class="header-btn">
-                                    <a href="./signin-signup.html"><button class="sign-in"> Log In</button></a>
-                                    <a href="./signin-signup.html"><button class="sign-up"> Sign Up</button></a>
+                                    <a href="./signin-signup.asp"><button class="sign-in"> Log In</button></a>
+                                    <a href="./signin-signup.asp"><button class="sign-up"> Sign Up</button></a>
                                 </div>
                                 <style>
                                     .sign-up{
@@ -116,7 +115,7 @@
                                 </style>
                             </div>
                             <div class="header__logo">
-                                <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                                <a href="./index.asp"><img src="img/logo.png" alt=""></a>
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
@@ -124,8 +123,8 @@
                                     <a href="#"><img src="img/icon/heart.png" alt=""></a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="./shoping-cart.html"><img src="img/icon/cart.png" alt=""> <span></span></a>
-                                    <div class="cart__price"> Giỏ Hàng: <span>0VND</span></div>
+                                    <a href="shoping-cart.asp"><img src="img/icon/cart.png" alt=""> <span></span></a>
+                                    <div class="cart__price"> Giỏ Hàng: <span id="slsp"></span></div>
                                 </div>
                             </div>
                         </div>
@@ -139,12 +138,12 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Trang Chủ</a></li>
-                            <li><a href="./shop.html">Gian Hàng</a></li>
+                            <li class="active"><a href="./index.asp">Trang Chủ</a></li>
+                            <li><a href="shop.asp">Gian Hàng</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="./shoping-cart.html">Giỏ Hàng</a></li>
-                                    <li><a href="./checkout.html">Thanh Toán</a></li>
+                                    <li><a href="shoping-cart.asp">Giỏ Hàng</a></li>
+                                    <li><a href="checkout.asp">Thanh Toán</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -164,7 +163,7 @@
                         <div class="col-lg-8">
                             <div class="hero__text">
                                 <h2>Ngọt ngào ở ngày mai, còn hôm nay chúng tôi có bánh ngọt...</h2>
-                                <a href="./shop.html" class="primary-btn">Our cakes</a>
+                                <a href="./shop.asp" class="primary-btn">Our cakes</a>
                             </div>
                         </div>
                     </div>
@@ -176,7 +175,7 @@
                         <div class="col-lg-8">
                             <div class="hero__text">
                                 <h2>Let's take a rest and have a cake, my dear.</h2>
-                                <a href="./shop.html" class="primary-btn">Our cakes</a>
+                                <a href="./shop.asp" class="primary-btn">Our cakes</a>
                             </div>
                         </div>
                     </div>
@@ -252,6 +251,7 @@ query = "SELECT MaLoai, TenLoai, SoLuong, img FROM LoaiHH"
 ' Thực thi câu truy vấn
 Dim rs
 Set rs = connDB.Execute(query)
+id = rs("MaLoai")
 
 ' Hiển thị kết quả lấy được
 While Not rs.EOF
@@ -263,16 +263,16 @@ While Not rs.EOF
              
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="<%=rs("img")%>">
+                        <div class="product__item__pic set-bg" id="hinh" data-setbg="<%=rs("img")%>">
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#"><%=rs("TenLoai")%></a></h6>
-                            <div class="product__item__price"><%=rs("SoLuong")%></div>
+                            <h6 id ="ten"><a href="#"><%=rs("TenLoai")%></a></h6>
+                            <div class="product__item__price" id="gia"><%=rs("SoLuong")%></div>
                             <div class="cart_add">
-                                <a href="#">Add to cart</a>
+                                <button class="add..">Add to cart</button>
                             </div>
                         </div>
                     </div>
@@ -283,6 +283,8 @@ While Not rs.EOF
                 %>
             </div>
         </div>
+        <script src = "addtocart.js">                        
+        </script>
     </section>
     <!-- Product Section End -->
 
