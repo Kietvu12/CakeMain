@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 
-<body  onload="getslsp()">
+<body onload="loadhome()" >
 
     <!-- Page Preloder -->
    
@@ -263,14 +263,20 @@ While Not rs.EOF
              
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" id="hinh" data-setbg="<%=rs("img")%>">
+                        <div class="product__item__pic set-bg" data-setbg="<%=rs("img")%>">
+                        <style>
+                        .hinh{
+                            display :none
+                        }
+                        </style>
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6 id ="ten"><a href="#"><%=rs("TenLoai")%></a></h6>
-                            <div class="product__item__price" id="gia"><%=rs("SoLuong")%></div>
+                            <h6 class ="ten"><a href="#"><%=rs("TenLoai")%></a></h6>
+                            <div class="product__item__price"><%=rs("SoLuong")%></div>
+                            <span class="hinh"><%=rs("img")%></span>
                             <div class="cart_add">
                                 <button class="add..">Add to cart</button>
                             </div>
