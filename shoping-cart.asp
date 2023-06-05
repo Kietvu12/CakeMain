@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
-<body>
+<body onload="loadcart()">
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="offcanvas__logo">
-        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+        <a href="./index.asp"><img src="img/logo.png" alt=""></a>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__option">
@@ -64,8 +64,8 @@
                         <div class="header__top__inner">
                             <div class="header__top__left">
                                 <div class="header-btn">
-                                    <a href="./signin-signup.html"><button class="sign-in"> Log In</button></a>
-                                    <a href="./signin-signup.html"><button class="sign-up"> Sign Up</button></a>
+                                    <a href="./signin-signup.asp"><button class="sign-in"> Log In</button></a>
+                                    <a href="./signin-signup.asp"><button class="sign-up"> Sign Up</button></a>
                                 </div>
                                 <style>
                                     .sign-up{
@@ -115,7 +115,7 @@
                                 </style>
                             </div>
                             <div class="header__logo">
-                                <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                                <a href="./index.asp"><img src="img/logo.png" alt=""></a>
                             </div>
                             <div class="header__top__right">
                                 <div class="header__top__right__links">
@@ -123,8 +123,8 @@
                                     <a href="#"><img src="img/icon/heart.png" alt=""></a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="./shoping-cart.html"><img src="img/icon/cart.png" alt=""><span></span></a>
-                                    <div class="cart__price"> Giỏ Hàng: <span>0VND</span></div>
+                                    <a href="./shoping-cart.asp"><img src="img/icon/cart.png" alt=""><span></span></a>
+                                    <div class="cart__price" id="slsp"> Giỏ Hàng: <span>0</span></div>
                                 </div>
                             </div>
                         </div>
@@ -138,12 +138,12 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Trang Chủ</a></li>
-                            <li><a href="./shop.html">Gian Hàng</a></li>
+                            <li class="active"><a href="./index.asp">Trang Chủ</a></li>
+                            <li><a href="./shop.asp">Gian Hàng</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="./shoping-cart.html">Giỏ Hàng</a></li>
-                                    <li><a href="./checkout.html">Thanh Toán</a></li>
+                                    <li><a href="./shoping-cart.asp">Giỏ Hàng</a></li>
+                                    <li><a href="./checkout.asp">Thanh Toán</a></li>
                                     
 
                                 </ul>
@@ -167,7 +167,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Trang Chủ</a>
+                        <a href="./index.asp">Trang Chủ</a>
                         <span>Giỏ Hàng</span>
                     </div>
                 </div>
@@ -177,7 +177,7 @@
     <!-- Breadcrumb End -->
 
     <!-- Shopping Cart Section Begin -->
-    <section class="shopping-cart spad">
+    <section class="shopping-cart spad" id="cart_dad">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -191,99 +191,21 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shop/cart/cart-1.jpg" alt="">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>T-shirt Contrast Pocket</h6>
-                                            <h5>$98.49</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 30.00</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shop/cart/cart-2.jpg" alt="">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>Diagonal Textured Cap</h6>
-                                            <h5>$98.49</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 32.50</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shop/cart/cart-3.jpg" alt="">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>Basic Flowing Scarf</h6>
-                                            <h5>$98.49</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 47.00</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="img/shop/cart/cart-4.jpg" alt="">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>Basic Flowing Scarf</h6>
-                                            <h5>$98.49</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-                                                <input type="text" value="1">
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">$ 30.00</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
+                            <tbody id="abc">
                             </tbody>
+
                         </table>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="./shop.html">Quay lại Gian Hàng</a>
+                                <a href="./shop.asp">Quay lại Gian Hàng</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn update__btn">
-                                <a href="./checkout.html"><i class="fa fa-spinner"></i> Thanh Toán </a>
+                                <a href="./checkout.asp"><i class="fa fa-spinner"></i> Thanh Toán </a>
                             </div>
                         </div>
                     </div>
@@ -303,11 +225,12 @@
                             <li>Ưu Đãi<span>$0.00</span></li>
                             <li>Total <span>$ 169.50</span></li>
                         </ul>
-                        <a href="./checkout.html" class="primary-btn">Đến trang Thanh Toán</a>
+                        <a href="./checkout.asp" class="primary-btn">Đến trang Thanh Toán</a>
                     </div>
                 </div>
             </div>
         </div>
+        <script src="addtocart.js"></script>
     </section>
     <!-- Shopping Cart Section End -->
 
