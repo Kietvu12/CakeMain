@@ -264,11 +264,7 @@ While Not rs.EOF
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
                         <div class="product__item__pic set-bg" data-setbg="<%=rs("img")%>">
-                        <style>
-                        .hinh{
-                            display :none
-                        }
-                        </style>
+
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
