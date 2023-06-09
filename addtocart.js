@@ -10,9 +10,9 @@ var giohang = [];
          btn[i].addEventListener("click", function () {
         var hinh = btn[i].parentNode.parentNode.querySelector(".hinh").textContent;
         var ten = btn[i].parentNode.parentNode.querySelector(".ten").textContent;
-        var gia = btn[i].parentNode.parentNode.querySelector(".product__item__price").textContent;
+        var gia = parseInt(btn[i].parentNode.parentNode.querySelector(".product__item__price").textContent);
         var soluong = 1;
-                                    alert(gia);
+                                    alert(hinh);
                                     var sp ={
                                         "hinh":hinh,
                                         "ten":ten,
@@ -20,15 +20,15 @@ var giohang = [];
                                         "soluong":soluong
                                         };
                                         giohang.push(sp);
-                                        localStorage.setItem("cart",JSON.stringify(giohang));
-                                        var cart = JSON.parse(localStorage.getItem("cart"));
+                                        sessionStorage.setItem("cart",JSON.stringify(giohang));
+                                        var cart = JSON.parse(sessionStorage.getItem("cart"));
             if(cart!=null){
                 document.getElementById("slsp").innerHTML = cart.length;
             }
          });
          }
         function getslsp(){
-            var cart = JSON.parse(localStorage.getItem("cart"));
+            var cart = JSON.parse(sessionStorage.getItem("cart"));
             if(cart!=null){
                 document.getElementById("slsp").innerHTML = cart.length;
             }
@@ -45,10 +45,11 @@ var giohang = [];
             showcart();
         }
         function showcart(){
-            var cart = JSON.parse(localStorage.getItem("cart"));
+            var cart = JSON.parse(sessionStorage.getItem("cart"));
             if(cart!=null){
                 var kq = "";
                 for(let i =0; i < cart.length; i++){
+                    var tt = cart[i]["gia"]*cart[i]["soluong"];
                     kq += `
                     <tr>
                                     
@@ -111,19 +112,28 @@ var giohang = [];
                           </style>
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                         <span id="up">+</span><input type="text" value="`+cart[i]["gia"] +`"><span id="down">-<span>
+                                     <span onclick="dow( `+ i +`)" id="down">-</span><input id ="quantity"type="text" value="`+cart[i]["soluong"] +`"><span id="up">+<span>
                                             </div>
+                                            <style>
+                                            #down:hover{
+                                                cursor:pointer;
+                                                font-size: 50px;
+                                            }
+                                            #up:hover{
+                                                cursor:pointer;
+                                            }
+                                            </style>
                                         </div>
                                     </td>
-                                    <td class="cart__price">$ 30.00</td>
+                                    <td class="cart__price">`+ tt +`</td>
                                     <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>
-                                   
+                                </tr>       
                      `;
                 }
                 document.getElementById("abc").innerHTML=kq;
                 }
         }
-        
+    
+
         
         
