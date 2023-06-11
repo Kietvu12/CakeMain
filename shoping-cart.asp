@@ -26,6 +26,77 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <script>
+        function update_tt(id) {
+        
+            var sl = $('#ip_sl_' + id).val(),
+            gia = $('#ip_tt_' + id).val();
+             var tongtien = sl * gia;
+             $('#tt_price_'+id).html(tongtien + "đ");
+        }
+    </script>
+     <script src="addtocart.js"></script>
+     <style>
+     input[type="number"] {
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+.number-input {
+  border: 2px solid #ddd;
+  display: inline-flex;
+}
+
+.number-input,
+.number-input * {
+  box-sizing: border-box;
+}
+
+.number-input button {
+  outline:none;
+  -webkit-appearance: none;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  margin: 0;
+  position: relative;
+}
+
+.number-input button:before,
+.number-input button:after {
+  display: inline-block;
+  position: absolute;
+  content: '';
+  width: 1rem;
+  height: 2px;
+  background-color: #212121;
+  transform: translate(-50%, -50%);
+}
+.number-input button.plus:after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.number-input input[type=number] {
+  font-family: sans-serif;
+  max-width: 5rem;
+  padding: .5rem;
+  border: solid #ddd;
+  border-width: 0 2px;
+  font-size: 2rem;
+  height: 3rem;
+  font-weight: bold;
+  text-align: center;
+}</style>
 </head>
 
 <body onload="loadcart()">
@@ -196,6 +267,8 @@
 
                         </table>
                     </div>
+     
+                                     
 
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
@@ -221,16 +294,16 @@
                     <div class="cart__total">
                         <h6>Thành Tiền</h6>
                         <ul>
-                            <li>Tổng tiền <span>$ 169.50</span></li>
+                            <li >Tổng tiền <span id="all_tt">$ 169.50</span></li>
                             <li>Ưu Đãi<span>$0.00</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <li>Total <span id="all_tt_bf_promotion">$ 169.50</span></li>
                         </ul>
                         <a href="./checkout.asp" class="primary-btn">Đến trang Thanh Toán</a>
                     </div>
                 </div>
             </div>
         </div>
-        <script src="addtocart.js"></script>
+        <!--<script src="addtocart.js"></script> -->
     </section>
     <!-- Shopping Cart Section End -->
 
