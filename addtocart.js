@@ -9,15 +9,18 @@ var giohang = [];
          for(let i = 0; i< btn.length; i++){
          btn[i].addEventListener("click", function () {
         var hinh = btn[i].parentNode.parentNode.querySelector(".hinh").textContent;
+        var ma = btn[i].parentNode.parentNode.querySelector(".ma").textContent;
         var ten = btn[i].parentNode.parentNode.querySelector(".ten").textContent;
         var gia = parseInt(btn[i].parentNode.parentNode.querySelector(".product__item__price").textContent);
-        var soluong = 1;
-                                    alert(hinh);
+        var soluong=1;
+        alert(ma);
+                                    
                                     var sp ={
                                         "hinh":hinh,
                                         "ten":ten,
                                         "gia":gia,
-                                        "soluong":soluong
+                                        "soluong":soluong,
+                                        "ma":ma
                                         };
                                         giohang.push(sp);
                                         sessionStorage.setItem("cart",JSON.stringify(giohang));
@@ -44,80 +47,39 @@ var giohang = [];
             getslsp();
             showcart();
         }
-        function showcart(){
+        function showcart(cart){
             var cart = JSON.parse(sessionStorage.getItem("cart"));
             if(cart!=null){
                 var kq = "";
+                var total = 0;
                 for(let i =0; i < cart.length; i++){
                     var tt = cart[i]["gia"]*cart[i]["soluong"];
+                    total += tt
                     kq += `
-                    <tr>
-                                    
+                    <tr id = "pro">                 
                     <td class="product__cart__item"  id="mom">
-                    <style>
-                    #mom{
-                    width: 600px;
-                    }
-                    </style>
                     <div class="product__cart__item__pic">
-                    
                         <img id="dad" src="`+cart[i]["hinh"] +`" alt="">
-                        <style>
-                        #dad{
-                            display: block;
-                            max-width:400px;
-                            max-height:200px;
-                            width: auto;
-                            height: auto;
-
-                          }
-                          </style>
                     </div>
                     <div class="product__cart__item__text" id ="grandpa">
-                    <style>
-                        #grandpa{
-                            overflow: hidden;
-                            padding-top: 21px;
-                          }
-                          </style>
-
                         <h6 id ="ten1" style>`+cart[i]["ten"] +`</h6>
-                        <style>
-                        #ten1{
-                            color: #111111;
-  font-size: 16px;
-  font-weight: 500;
-  text-transform: uppercase;
-  margin-bottom: 40px;
-  margin-top:50px;
-
-                          }
-                          </style>
                         <h5 id="ten2">`+cart[i]["gia"] +`</h5>
-                        <style>
-                        #ten2{
-                            color: #111111;
-                            font-weight: 600;
-                            font-size: 16px;
-                            margin-bottom:32px;
-                          }
-                          </style>
                     </div>
                 </td>
                                     <td class="quantity__item" id="slsp">
-                                    <style>
-                        #slsp{
-                            width: 175px;
-                          }
-                          </style>
                                         <div class="quantity">
                                             <div class="pro-qty">
-                                     <span onclick="dow( `+ i +`)" id="down">-</span><input id ="quantity"type="text" value="`+cart[i]["soluong"] +`"><span id="up">+<span>
+
+                                         <div class="number-input">
+                                         <button onclick="decreaseQuantity(${i}); update_tt(`+i+`)" class="minus"></button>
+                                         <input class="quantity" min="0" name="quantity" id="ip_sl_`+i+`" value="`+cart[i]["soluong"]+`" type="number">
+                                         <button onclick="increaseQuantity(${i}); update_tt(`+i+`)" class="plus"></button>
+                                       </div>
+
                                             </div>
                                             <style>
                                             #down:hover{
                                                 cursor:pointer;
-                                                font-size: 50px;
                                             }
                                             #up:hover{
                                                 cursor:pointer;
@@ -125,15 +87,46 @@ var giohang = [];
                                             </style>
                                         </div>
                                     </td>
-                                    <td class="cart__price">`+ tt +`</td>
-                                    <td class="cart__close"><span class="icon_close"></span></td>
-                                </tr>       
+                                    <td class="cart__price" id="tt_price_`+i+`">`+ tt +`đ</td>
+                                    <input type="hidden" value="`+tt+`" id="ip_tt_`+i+`">
+                                    <td class="cart__close"><span class="icon_close" onclick="removeItem(`+cart[i]["ma"] +`)"></span></td>
+                                </tr> 
+                             
                      `;
                 }
-                document.getElementById("abc").innerHTML=kq;
+                // document.getElementById("abc").innerHTML=kq;
+                $('#abc').append(kq);
+                $('#all_tt').text(total + "đ");
+                $('#all_tt_bf_promotion').text(total + "đ");
                 }
         }
-    
-
-        
-        
+        function increaseQuantity(index) {
+            var cart = JSON.parse(sessionStorage.getItem("cart"));
+            cart[index]["soluong"] += 1;
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+   
+          }
+          function decreaseQuantity(index) {
+            var cart = JSON.parse(sessionStorage.getItem("cart"));
+            if (cart[index]["soluong"] > 1) {
+              cart[index]["soluong"] -= 1;
+              sessionStorage.setItem("cart", JSON.stringify(cart));
+            }
+          }
+          function changeQuantity(index, value) {
+            var cart = JSON.parse(sessionStorage.getItem("cart"));
+            if (value > 0) {
+              cart[index]["soluong"] = parseInt(value);
+              sessionStorage.setItem("cart", JSON.stringify(cart));
+            }
+          }
+          function removeItem(ma) {
+            var cart = JSON.parse(sessionStorage.getItem('cart'));
+            for (let i = 0; i < cart.length; i++) {
+              if (cart[i]["ma"] === ma) {
+                cart.splice(i, 1);
+                break;
+              }
+            }
+            sessionStorage.setItem('cart', JSON.stringify(cart));
+          }                    
