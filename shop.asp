@@ -46,8 +46,8 @@
                         <div class="header__top__inner">
                             <div class="header__top__left">
                                 <div class="header-btn">
-                                <a href="./signin-signup.html"><button class="sign-in"> Log In</button></a>
-                                <a href="./signin-signup.html"><button class="sign-up"> Sign Up</button></a>
+                                <a href="./signin-signup.asp"><button class="sign-in"> Log In</button></a>
+                                <a href="./signin-signup.asp"><button class="sign-up"> Sign Up</button></a>
                                 </div>
                                 <style>
                                     .sign-up{
@@ -105,7 +105,7 @@
                                     <a href="#"><img src="img/icon/heart.png" alt=""></a>
                                 </div>
                                 <div class="header__top__right__cart">
-                                    <a href="./shoping-cart.html"><img src="img/icon/cart.png" alt=""> <span></span></a>
+                                    <a href="./shoping-cart.asp"><img src="img/icon/cart.png" alt=""> <span></span></a>
                                     <div class="cart__price"> Giỏ Hàng: <span>0VND</span></div>
                                 </div>
                             </div>
@@ -120,12 +120,12 @@
                 <div class="col-lg-12">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Trang Chủ</a></li>
-                            <li><a href="./shop.html">Gian Hàng</a></li>
+                            <li class="active"><a href="./index.asp">Trang Chủ</a></li>
+                            <li><a href="./shop.asp">Gian Hàng</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
-                                    <li><a href="./shoping-cart.html">Giỏ Hàng</a></li>
-                                    <li><a href="./checkout.html">Thanh Toán</a></li>
+                                    <li><a href="./shoping-cart.asp">Giỏ Hàng</a></li>
+                                    <li><a href="./checkout.asp">Thanh Toán</a></li>
                                     
 
                                 </ul>
@@ -149,7 +149,7 @@
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Trang Chủ</a>
+                        <a href="./index.asp">Trang Chủ</a>
                         <span>Gian Hàng</span>
                         <style>
                             .cart{
@@ -186,198 +186,76 @@
                 </div>
             </div>
             <div class="row">
+                <% 
+Dim connectionString
+connectionString = "Provider=SQLOLEDB;Data Source=DESKTOP-P7BQEGE;Initial Catalog=QuanLyTiemBanh;User ID=sa;Password=1"
+
+Dim connDB
+Set connDB = Server.CreateObject("ADODB.Connection")
+connDB.ConnectionString = connectionString
+
+' Mở kết nối
+connDB.Open()
+
+' Tạo câu truy vấn
+Dim query
+query = "SELECT MaHhoa, TenHhoa, Gia, img, MaLoai,TenLoai FROM Hhoa and LoaiHH "
+
+' Thực thi câu truy vấn
+Dim rs
+Set rs = connDB.Execute(query)
+id = rs("MaHhoa")
+
+' Hiển thị kết quả lấy được
+While Not rs.EOF
+  
+  
+
+' Đóng kết nối
+%>
+             
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-1.jpg">
+                        <div class="product__item__pic set-bg" data-setbg="<%=rs("img")%>">
+
                             <div class="product__label">
                                 <span>Cupcake</span>
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6><a href="#">Dozen Cupcakes</a></h6>
-                            <div class="product__item__price">$32.00</div>
+                            <h6 class ="ten"><a href="#"><%=rs("TenHhoa")%></a></h6>
+                            <div class="product__item__price"><%=rs("Gia")%></div>
+                            <span id ="hinh" type="hidden" class="hinh"><%=rs("img")%></span>
+                             <span id ="ma" type="hidden" class="ma"><%=rs("MaHhoa")%></span>
+                            <style>
+                            #hinh{ 
+                                display :none;
+                            }
+                             #ma{ 
+                                display :none;
+                            }
+
+                            </style>
+
                             <div class="cart_add">
-                                <a href="#">Add to cart</a>
+                                <a class="add..">Add to cart</a>
+                                <style>
+                                .add.. :hover{
+                                    cursor:pointer;
+                                }
+                                </style>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-2.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Cookies and Cream</a></h6>
-                            <div class="product__item__price">$30.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-3.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Gluten Free Mini Dozen</a></h6>
-                            <div class="product__item__price">$31.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-4.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Cookie Dough</a></h6>
-                            <div class="product__item__price">$25.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-5.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Vanilla Salted Caramel</a></h6>
-                            <div class="product__item__price">$05.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-6.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">German Chocolate</a></h6>
-                            <div class="product__item__price">$14.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-7.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Dulce De Leche</a></h6>
-                            <div class="product__item__price">$32.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-8.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Mississippi Mud</a></h6>
-                            <div class="product__item__price">$08.00</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-9.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">VEGAN/GLUTEN FREE</a></h6>
-                            <div class="product__item__price">$98.85</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-10.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">SWEET CELTICS</a></h6>
-                            <div class="product__item__price">$5.77</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-11.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">SWEET AUTUMN LEAVES</a></h6>
-                            <div class="product__item__price">$26.41</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/shop/product-12.jpg">
-                            <div class="product__label">
-                                <span>Cupcake</span>
-                            </div>
-                        </div>
-                        <div class="product__item__text">
-                            <h6><a href="#">PALE YELLOW SWEET</a></h6>
-                            <div class="product__item__price">$22.47</div>
-                            <div class="cart_add">
-                                <a href="#">Add to cart</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <%
+                rs.MoveNext
+                Wend
+                %>
+            </div>
+        </div>
+        <script src = "addtocart.js">                        
+        </script>
             </div>
             <div class="shop__last__option">
                 <div class="row">
