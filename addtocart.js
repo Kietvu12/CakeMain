@@ -65,6 +65,7 @@ function showcart(cart) {
           <td class="product__cart__item" id="mom">
             <div class="product__cart__item__pic">
               <img id="dad" src="${cart[i]["hinh"]}" alt="">
+            
             </div>
             <div class="product__cart__item__text" id="grandpa">
               <h6 id="ten1" style>${cart[i]["ten"]}</h6>
@@ -80,19 +81,19 @@ function showcart(cart) {
                   <button onclick="increaseQuantity(${i}); update_tt(${i})" class="plus"></button>
                 </div>
               </div>
-              <style>
-                #down:hover {
-                  cursor: pointer;
-                }
-                #up:hover {
-                  cursor: pointer;
-                }
-              </style>
             </div>
           </td>
           <td class="cart__price" id="tt_price_${i}">${tt}đ</td>
           <input type="hidden" value="${tt}" id="ip_tt_${i}">
           <td class="cart__close"><span class="icon_close" onclick="removeItem('${cart[i]["ma"]}')"></span></td>
+          <style>
+          .icon_close:hover{
+            cursor:pointer;
+            box-shadow: 1px 3px 1px;
+            height: 100px;
+            width: 100px;
+          }
+          </style>
         </tr> 
       `;
       cq += ` <li>${cart[i]["ten"]} x ${cart[i]["soluong"]}<span>${tt}</span></li>
