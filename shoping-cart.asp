@@ -29,11 +29,19 @@
     <script>
         function update_tt(id) {
         
-            var sl = $('#ip_sl_' + id).val(),
-            gia = $('#ip_tt_' + id).val();
-             var tongtien = sl * gia;
-             $('#tt_price_'+id).html(tongtien + "đ");
-        }
+  var cart = JSON.parse(sessionStorage.getItem("cart"));
+  var total = 0;
+  for (let i = 0; i < cart.length; i++) {
+    var tt = cart[i]["gia"] * cart[i]["soluong"];
+    total += tt;
+    $('#tt_price_' + i).text(tt + "đ");
+    $('#ip_tt_' + i).val(tt);
+    $('#ip_sl_' + i).val(cart[i]["soluong"]);
+  }
+  $('#all_tt').text(total + "đ");
+  $('#all_tt_bf_promotion').text(total + "đ");
+}
+        
     </script>
      <script src="addtocart.js"></script>
      <style>
