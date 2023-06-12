@@ -246,12 +246,12 @@ connDB.Open()
 
 ' Tạo câu truy vấn
 Dim query
-query = "SELECT MaLoai, TenLoai, SoLuong, img FROM LoaiHH"
+query = "SELECT MaHhoa, TenHhoa, Gia, img FROM Hhoa"
 
 ' Thực thi câu truy vấn
 Dim rs
 Set rs = connDB.Execute(query)
-id = rs("MaLoai")
+id = rs("MaHhoa")
 
 ' Hiển thị kết quả lấy được
 While Not rs.EOF
@@ -270,11 +270,27 @@ While Not rs.EOF
                             </div>
                         </div>
                         <div class="product__item__text">
-                            <h6 class ="ten"><a href="#"><%=rs("TenLoai")%></a></h6>
-                            <div class="product__item__price"><%=rs("SoLuong")%></div>
-                            <span class="hinh"><%=rs("img")%></span>
+                            <h6 class ="ten"><a href="#"><%=rs("TenHhoa")%></a></h6>
+                            <div class="product__item__price"><%=rs("Gia")%></div>
+                            <span id ="hinh" type="hidden" class="hinh"><%=rs("img")%></span>
+                             <span id ="ma" type="hidden" class="ma"><%=rs("MaHhoa")%></span>
+                            <style>
+                            #hinh{ 
+                                display :none;
+                            }
+                             #ma{ 
+                                display :none;
+                            }
+
+                            </style>
+
                             <div class="cart_add">
-                                <button class="add..">Add to cart</button>
+                                <a class="add..">Add to cart</a>
+                                <style>
+                                .add.. :hover{
+                                    cursor:pointer;
+                                }
+                                </style>
                             </div>
                         </div>
                     </div>
