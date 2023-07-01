@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
 
-<body>
+<body onload="loadhome()" >
     <!-- Page Preloder -->
     <div id="preloder">
         <div class="loader"></div>
@@ -62,6 +62,7 @@
                                         transition: opacity 0.15s;
                                         font-weight: bold;
                                         margin-top: 1px;
+                                        display :none;
                                    }
                                     .sign-up:hover{
                                     background-color : black;
@@ -80,6 +81,7 @@
                                         font-weight: bold;
                                         border-radius: 5px;
                                         margin-right : 5px;
+                                        display :none;
                                 
                                     }
                                     .sign-in:hover{
@@ -106,7 +108,7 @@
                                 </div>
                                 <div class="header__top__right__cart">
                                     <a href="./shoping-cart.asp"><img src="img/icon/cart.png" alt=""> <span></span></a>
-                                    <div class="cart__price"> Giỏ Hàng: <span>0VND</span></div>
+                                     <div class="cart__price"> Giỏ Hàng: <span id="slsp">0</span></div>
                                 </div>
                             </div>
                         </div>
@@ -168,21 +170,7 @@
     <section class="shop spad">
         <div class="container">
             <div class="shop__option">
-                <div class="row">
-                    <div class="col-lg-7 col-md-7">
-                        <div class="shop__option__search">
-                            <form action="#">
-                                <select>
-                                    <option value="">Categories</option>
-                                    <option value="">Trà Trái Cây</option>
-                                    <option value="">Bánh Ngọt</option>
-                                    <option value="">Trà</option>
-                                </select>
-                                <input type="text" placeholder="Search">
-                                <button type="submit"><i class="fa fa-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
+              
                 </div>
             </div>
             <div class="row">
@@ -199,7 +187,7 @@ connDB.Open()
 
 ' Tạo câu truy vấn
 Dim query
-query = "SELECT MaHhoa, TenHhoa, Gia, img, MaLoai,TenLoai FROM Hhoa and LoaiHH "
+query = "SELECT MaHhoa, TenHhoa, Gia, img FROM Hhoa"
 
 ' Thực thi câu truy vấn
 Dim rs
@@ -345,8 +333,17 @@ While Not rs.EOF
 <div class="search-model">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
+         <form class="search-model-form"  method="get" action="search.asp">
+            <input type="text" id="search-input" name="search" placeholder="Search here.....">
+            <button class="searching" type="submit" >Tìm kiếm</button>
+            <style>
+            .searching{
+                border : none;
+                padding :15px;
+                background-color: #f08632;
+                color: white;
+            }
+            </style>
         </form>
     </div>
 </div>
