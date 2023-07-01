@@ -27,23 +27,6 @@
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
 </head>
-<script>
-        function update_tt(id) {
-        
-  var cart = JSON.parse(sessionStorage.getItem("cart"));
-  var total = 0;
-  for (let i = 0; i < cart.length; i++) {
-    var tt = cart[i]["gia"] * cart[i]["soluong"];
-    total += tt;
-    $('#tt_price_' + i).text(tt + "đ");
-    $('#ip_tt_' + i).val(tt);
-    $('#ip_sl_' + i).val(cart[i]["soluong"]);
-  }
-  $('#all_tt').text(total + "đ");
-  $('#all_tt_bf_promotion').text(total + "đ");
-}
-        
-    </script>
 <body onload="loadcart()">
     <!-- Page Preloder -->
     <div id="preloder">
@@ -96,6 +79,7 @@
                                         transition: opacity 0.15s;
                                         font-weight: bold;
                                         margin-top: 1px;
+                                        display :none;
                                    }
                                     .sign-up:hover{
                                     background-color : black;
@@ -114,6 +98,7 @@
                                         font-weight: bold;
                                         border-radius: 5px;
                                         margin-right : 5px;
+                                        display :none;
                                 
                                     }
                                     .sign-in:hover{
@@ -140,7 +125,7 @@
                                 </div>
                                 <div class="header__top__right__cart">
                                     <a href="./shoping-cart.asp"><img src="img/icon/cart.png" alt=""> <span></span></a>
-                                    <div class="cart__price"> Giỏ Hàng: <span>0VND</span></div>
+                                     <div class="cart__price"> Giỏ Hàng: <span id="slsp">0</span></div>
                                 </div>
                             </div>
                         </div>
@@ -160,8 +145,6 @@
                                 <ul class="dropdown">
                                     <li><a href="./shoping-cart.asp">Giỏ Hàng</a></li>
                                     <li><a href="./checkout.asp">Thanh Toán</a></li>
-                                    
-
                                 </ul>
                             </li>
                         </ul>
@@ -196,34 +179,35 @@
     <section class="checkout spad">
         <div class="container">
             <div class="checkout__form">
-                <form action="#">
+                <form method="post" action="bill.asp">
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <%
-Dim random_number
-Randomize ' Khởi tạo bộ sinh số ngẫu nhiên
-random_number = Int((100000000 * Rnd()) + 1) ' Tạo số ngẫu nhiên từ 1 đến 100
-%>
+                           Dim random_number
+                           Randomize ' Khởi tạo bộ sinh số ngẫu nhiên
+                           random_number = Int((10000 * Rnd()) + 1) ' Tạo số ngẫu nhiên từ 1 đến 100
+                            %>
                             <h6 class="checkout__title">Chi Tiết Hóa Đơn Số <%=random_number%></h6>
+                            <input type="hidden" name="bid" value="<%=random_number%>">
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Họ và tên(không bắt buộc)<span>*</span></p>
-                                        <input type="text">
+                                        <p>Họ và tên(không bắt buộc)<span></span></p>
+                                        <input type="text" name="bname">
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Số Điện Thoại(không bắt buộc)<span>*</span></p>
-                                        <input type="text">
+                                        <p>Số Điện Thoại(không bắt buộc)<span></span></p>
+                                        <input type="text" name="bnum">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
-                                        <p>Email(không bắt buộc)<span>*</span></p>
-                                        <input type="text">
+                                        <p>Email(không bắt buộc)<span></span></p>
+                                        <input type="text" name="bemail">
                                     </div>
                                 </div>
                             </div>
@@ -235,8 +219,8 @@ random_number = Int((100000000 * Rnd()) + 1) ' Tạo số ngẫu nhiên từ 1 �
                                 </label>
                             </div>
                             <div class="checkout__input">
-                                <p>Ghi Chú(không bắt buộc)<span>*</span></p>
-                                <input type="text"
+                                <p>Ghi Chú(không bắt buộc)<span></span></p>
+                                <input type="text" name="bnote"
                                 placeholder="Notes about your order, e.g. special notes for delivery.">
                             </div>
                         </div>
@@ -244,14 +228,13 @@ random_number = Int((100000000 * Rnd()) + 1) ' Tạo số ngẫu nhiên từ 1 �
                             <div class="checkout__order">
                                 <h6 class="order__title">Đơn hàng của bạn</h6>
                                 <div class="checkout__order__products">Sản phẩm <span>Tổng</span></div>
-                                <ul class="checkout__total__products" id = "pro_check">
+                                <ul class="checkout__total__products" id = "pro_check" name="bpro">
                                 </ul>
+                                
                                 <ul class="checkout__total__all">
-                                    <li >Đơn giá<span id="all_tt">$750.99</span></li>
-                                    <li>Ưu đãi<span></span></li>
-                                    <li>Thành Tiền <span  id="all_tt_bf_promotion">$750.99</span></li>
-                                </ul>
-
+                                    <li >Đơn giá<span id="all_tt"></span></li>
+                                    <li>Thành Tiền <span id="all_tt_bf_promotion"></span></li>
+                                    </ul>
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
                                         Tiền mặt (thanh toán tại quầy)
