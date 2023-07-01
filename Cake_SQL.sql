@@ -1,55 +1,28 @@
 create database QuanLyTiemBanh
-
-create table Customer(
-tenKH nvarchar(100) not null,
-soDT char(10) primary key,
-diemKH int,
-password char(100) not null,
+go
+create table Hhoa(
+MaHhoa int identity(1,1),
+TenHhoa nvarchar(255),
+Gia int,
+img nvarchar(255),
 );
 go
-create table LoaiHH(
-MaLoai int primary key identity(1,1),
-TenLoai nvarchar(205) not null,
-SoLuong int not null,
-img varchar(205) not null,
+insert into Hhoa( TenHhoa, Gia,img) VALUES
+('Dozen Cupcakes',1,'img/shop/product-1.jpg'),
+('Cookies and Cream',1,'img/shop/product-2.jpg'),
+('Gluten Free Mini Dozen',1,'img/shop/product-3.jpg'),
+('Cookie Dough',1,'img/shop/product-4.jpg'),
+('Vanilla Salted Caramel',1,'img/shop/product-5.jpg'),
+('German Chocolate',1,'img/shop/product-6.jpg'),
+('Dulce De Leche',1,'img/shop/product-7.jpg'),
+('Mississippi Mud',1,'img/shop/product-8.jpg');
+go
+create table Bill(
+MaHD int,
+[name] nvarchar(255),
+phonenum nvarchar(255),
+email nvarchar(255),
+note text,
+cash int,
 );
 go
-insert into LoaiHH( TenLoai, SoLuong,img) values 
-( Cupcake, 1, img/product-1.jpg),
-( Cupcake2, 1, img/product-2.jpg),
-( Cupcake3, 1, img/product-3.jpg),
-( Cupcake4, 1, img/product-4.jpg),
-( Cupcake5, 1, img/product-5.jpg);
-Cupcake4
-create table Hh(
-MaHH int primary key identity(1,1),
-MaLoai int not null,
-DonGia int not null,
-SoLuong int not null,
-);
-go
-drop table Hh;
-create table Hh(
-MaHH int primary key identity(1,1),
-MaLoai int not null,
-DonGia int not null,
-Soluong int not null,
-);
-go
-create table HoaDon(
-MaHD int primary key identity(1,1),
-soDT char(10) not null,
-NgayDat Datetime default getdate(),
-TongTien int not null,
-);
-go
-create table ChiTietHoaDon(
-MaHD int not null,
-MaHH int not null,
-soLuong int not null,
-donGia int not null,
-thanhTien int not null,
-); 
-go
-
-
