@@ -159,6 +159,7 @@ input[type=number]::-webkit-outer-spin-button {
                                         transition: opacity 0.15s;
                                         font-weight: bold;
                                         margin-top: 1px;
+                                        display :none;
                                    }
                                     .sign-up:hover{
                                     background-color : black;
@@ -177,6 +178,7 @@ input[type=number]::-webkit-outer-spin-button {
                                         font-weight: bold;
                                         border-radius: 5px;
                                         margin-right : 5px;
+                                        display :none;
                                 
                                     }
                                     .sign-in:hover{
@@ -275,9 +277,6 @@ input[type=number]::-webkit-outer-spin-button {
 
                         </table>
                     </div>
-     
-                                     
-
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
@@ -303,7 +302,6 @@ input[type=number]::-webkit-outer-spin-button {
                         <h6>Thành Tiền</h6>
                         <ul>
                             <li >Tổng tiền <span id="all_tt">$ 169.50</span></li>
-                            <li>Ưu Đãi<span>$0.00</span></li>
                             <li>Total <span id="all_tt_bf_promotion">$ 169.50</span></li>
                         </ul>
                         <a href="./checkout.asp" class="primary-btn">Đến trang Thanh Toán</a>
@@ -311,7 +309,7 @@ input[type=number]::-webkit-outer-spin-button {
                 </div>
             </div>
         </div>
-        <!--<script src="addtocart.js"></script> -->
+        <script src="addtocart.js"></script> 
     </section>
     <!-- Shopping Cart Section End -->
 
