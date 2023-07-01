@@ -105,7 +105,7 @@ function showcart(cart) {
     $('#pro_check').append(cq);
     $('#all_tt').text(total + "đ");
     $('#all_tt_bf_promotion').text(total + "đ");
-    $('#all_tt_bf_promotion').text(total + "đ");
+    $('#all_tt_bf_promotion1').text(total + "đ");
 
   }
 }
@@ -120,10 +120,12 @@ function increaseQuantity(index) {
 
 function decreaseQuantity(index) {
   var cart = JSON.parse(localStorage.getItem("cart"));
-  if (cart[index]["soluong"] > 1) {
-    cart[index]["soluong"] -= 1;
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
+  var slm = cart[index]["soluong"] - 1;
+  4
+  
+  cart[index]["soluong"] = slm;
+  localStorage.setItem("cart", JSON.stringify(cart));
+  document.getElementById("ip_sl_" + index).value = slm;
 }
 
 function countTotal(cart) {
