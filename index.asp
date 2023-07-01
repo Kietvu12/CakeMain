@@ -80,6 +80,7 @@
                                         transition: opacity 0.15s;
                                         font-weight: bold;
                                         margin-top: 1px;
+                                        display :none;
                                    }
                                     .sign-up:hover{
                                     background-color : black;
@@ -98,6 +99,7 @@
                                         font-weight: bold;
                                         border-radius: 5px;
                                         margin-right : 5px;
+                                        display :none;
                                 
                                     }
                                     .sign-in:hover{
@@ -124,7 +126,7 @@
                                 </div>
                                 <div class="header__top__right__cart">
                                     <a href="shoping-cart.asp"><img src="img/icon/cart.png" alt=""> <span></span></a>
-                                    <div class="cart__price"> Giỏ Hàng: <span id="slsp"></span></div>
+                                    <div class="cart__price"> Giỏ Hàng: <span id="slsp">0</span></div>
                                 </div>
                             </div>
                         </div>
@@ -448,8 +450,17 @@ While Not rs.EOF
 <div class="search-model">
     <div class="h-100 d-flex align-items-center justify-content-center">
         <div class="search-close-switch">+</div>
-        <form class="search-model-form">
-            <input type="text" id="search-input" placeholder="Search here.....">
+        <form class="search-model-form"  method="get" action="search.asp">
+            <input type="text" id="search-input" name="search" placeholder="Search here.....">
+            <button class="searching" type="submit" >Tìm kiếm</button>
+            <style>
+            .searching{
+                border : none;
+                padding :15px;
+                background-color: #f08632;
+                color: white;
+            }
+            </style>
         </form>
     </div>
 </div>
